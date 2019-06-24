@@ -1,0 +1,66 @@
+﻿@model IEnumerable<SistemaCarCompras.Models.Produto>
+
+
+<div id="top" class="row">
+    <div class="col-md-8">
+        <h2>Itens</h2>
+    </div>  <!-- /Col-md-3 -->
+
+    <div class="col-md-2">
+        <a href="http://localhost:64955/api/ProdApi/GetDados" class="btn btn-success pull-right h2">Enviar Dados</a>
+    </div>
+
+    <div class="col-md-2">
+        <a href="@Url.Action("IncluirProduto","Produto")" class="btn btn-primary pull-right h2">Novo Item</a> 
+    </div> <!-- /Col-md-3 -->
+
+</div>
+@*<p>
+        @Html.ActionLink("Cadastrar novo item", "IncluirProduto")
+    </p>*@
+<table class="table table-striped col-md-12">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Categoria)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Preco)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CodBarras)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Categoria)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Preco)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CodBarras)
+            </td>
+            <td>
+
+                <a class="btn btn-warning btn-xs" href="@Url.Action("EditarProduto","Produto",new { id = item.ProdutoId } )">Editar</a> |
+                <a class="btn btn-danger btn-xs" href="@Url.Action("ExcluirProduto","Produto",new { id = item.ProdutoId } )">Excluir</a>
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+
+
+

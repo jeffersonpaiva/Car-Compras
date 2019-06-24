@@ -2,10 +2,13 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>@ViewBag.Title</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title CarCompras</title>
+    <link rel="shortcut icon" href="https://trello-attachments.s3.amazonaws.com/5cc7453cd8d53c0f13ad91f4/512x512/e089693af7d4cbba69aa90201eb35849/logo.png" />
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js"></script>
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -16,26 +19,94 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+
+                @Html.ActionLink("Sistema CarCompras", "Index", "Produto", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, null)</li>
-                    <li>@Html.ActionLink("API", "Index", "Help", new { area = "" }, null)</li>
+                    <li>@Html.ActionLink("INICIO", "Index", "Produto")</li>
+                    <li>@Html.ActionLink("PRODUTOS", "ObterProdutos", "Produto")</li>
+
                 </ul>
+
+                <div>
+                    <ul class="nav navbar-nav navbar-right ">
+                        <li><a href="#" onclick="chamarModalLogin();">LOGIN</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav"></ul>
             </div>
         </div>
     </div>
+
     <div class="container body-content">
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - BBNow Sistemas LTDA</p>
         </footer>
     </div>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+    <script>
+        function chamarModalLogin() {
+            $("#modalLogin").modal('show')
+        }
+    </script>
+
+
+
+    <div class="modal fade" tabindex="-1" role="dialog" id="modalLogin">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h3>Logar</h3>
+
+                    <div class="form-group">
+                        <input type="email" class="form-control" id="email" placeholder="Digite seu e-mail">
+                    </div>
+
+                    <div class="form-group">
+                        <input type="password" class="form-control" id="senha" placeholder="Digite sua senha">
+                    </div>
+                </div>
+                <div class="modal-body">
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Login</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
+
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyA8ujeUocT7WSuOh4Z1MrwTDbtlagdjHI0",
+            authDomain: "carcompras-ff79a.firebaseapp.com",
+            databaseURL: "https://carcompras-ff79a.firebaseio.com",
+            projectId: "carcompras-ff79a",
+            storageBucket: "carcompras-ff79a.appspot.com",
+            messagingSenderId: "983825895318",
+            appId: "1:983825895318:web:fec6b3b4c4459925"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
+
+
+
 </body>
 </html>
